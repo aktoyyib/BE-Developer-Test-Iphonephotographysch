@@ -19,5 +19,3 @@ Route::get('/', function () {
 });
 
 Route::get('/users/{user}/achievements', [AchievementsController::class, 'index']);
-Route::get('save-lesson', [AchievementsController::class, 'saveLesson']);
-Route::get('save-comment', [AchievementsController::class, 'saveComment']);
