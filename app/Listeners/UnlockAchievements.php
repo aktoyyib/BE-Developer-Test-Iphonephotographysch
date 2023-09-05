@@ -22,7 +22,7 @@ class UnlockAchievements
     /**
      * Handle the event.
      */
-    public function handle(AchievementUnlocked $event): void
+    public function handle(object $event): void
     {
         $user = $event->user; 
 
