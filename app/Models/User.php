@@ -42,4 +42,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function watched()
+    {
+        return $this->hasMany(UserLesson::class, 'user_id')->where('watched', true);
+    }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    public function achievements()
+    {
+        return $this->hasMany(UserAchievement::class, 'user_id');
+    }
+
+    public function badge()
+    {
+        return $this->hasOne(UserBadge::class, 'user_id');
+    }
 }
