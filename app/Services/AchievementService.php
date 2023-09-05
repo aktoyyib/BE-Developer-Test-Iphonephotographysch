@@ -17,8 +17,7 @@ class AchievementService
 	}
 
 	public function getNextAvailableAchievements(array $achievementIDs, $userID)
-	{
-		$selectedColumn = 'name';
+	{ 
 
 		$results = Achievements::whereDoesntHave('user_achievement', function ($query) use ($userID) {
 				            $query->where('user_id', '=', $userID);
@@ -26,10 +25,7 @@ class AchievementService
 						->select('type', 'name')
 						->orderBy('threshold', 'ASC') 
 						->get()
-						->groupBy('type');
-		
-		// $minValues = $results->pluck('threshold');
-		// $selectedValues = $results->pluck($selectedColumn);
+						->groupBy('type'); 
 
 		return $results;
 	}

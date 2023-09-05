@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\AchievementService;
-use App\Traits\BadgeConfig; 
-use App\Models\Lesson;
-use App\Events\LessonWatched;
-use App\Models\Comment;
-use App\Events\CommentWritten;
+use App\Traits\BadgeConfig;  
 
 class AchievementsController extends Controller
 {
@@ -21,7 +17,7 @@ class AchievementsController extends Controller
     {
         $this->achievementService = $achievementService;
     }
-    
+
     public function index(User $user)
     {
         // Retrieve the user's unlocked achievements
@@ -30,7 +26,7 @@ class AchievementsController extends Controller
         $userAchievementIDs = array_column($user->achievements->toArray(), 'achievement_id');
 
         //Retrieve $nextAvailableAchievements
-        $nextAvailableAchievements = $this->achievementService->getNextAvailableAchievements($userAchievementIDs, $user->id);
+        $nextAvailableAchievements = $this->achievementService->getNextAvailableAchievements($userAchievementIDs, $user->id); 
 
         // Retrieve the user's current badge
         $currentBadge = empty($user->badge) ? $this->defaultBadge()->name : $user->badge->badge_name;
@@ -53,5 +49,5 @@ class AchievementsController extends Controller
             'next_badge' => !empty($nextBadge) ? $nextBadge->name : '',
             'remaing_to_unlock_next_badge' => ($remainingToUnlockNextBadge > 0) ? $remainingToUnlockNextBadge : 0
         ]); 
-    }
+    } 
 }
