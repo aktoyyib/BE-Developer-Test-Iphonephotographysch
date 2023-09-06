@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\AchievementService;
-use App\Traits\BadgeConfig;  
+use App\Traits\BadgeConfig; 
+use App\Models\Lesson;
+use App\Events\LessonWatched;
+use App\Models\Comment;
+use App\Events\CommentWritten;
 
 class AchievementsController extends Controller
 {
